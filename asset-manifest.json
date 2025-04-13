@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.bf538fe7.css",
-    "main.js": "/static/js/main.b8c76855.js",
+    "main.js": "/static/js/main.cc99e19e.js",
     "static/media/travelcompass.png": "/static/media/travelcompass.92dcb9978bf1585e39e2.png",
     "static/media/atharaman.jpg": "/static/media/atharaman.7c6d26a3eba8ebe332d5.jpg",
     "static/media/deepnix.jpg": "/static/media/deepnix.f1990a8f8c7f23cff684.jpg",
@@ -11,10 +11,10 @@
     "static/media/ranabima.jpeg": "/static/media/ranabima.c576ec3814647589b2d5.jpeg",
     "index.html": "/index.html",
     "main.bf538fe7.css.map": "/static/css/main.bf538fe7.css.map",
-    "main.b8c76855.js.map": "/static/js/main.b8c76855.js.map"
+    "main.cc99e19e.js.map": "/static/js/main.cc99e19e.js.map"
   },
   "entrypoints": [
     "static/css/main.bf538fe7.css",
-    "static/js/main.b8c76855.js"
+    "static/js/main.cc99e19e.js"
   ]
 }
