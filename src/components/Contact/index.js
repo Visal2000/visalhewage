@@ -36,6 +36,7 @@ const Desc = styled.div`
   font-size: 18px;
   text-align: center;
   max-width: 600px;
+  padding: 15px;
   color: ${({ theme }) => theme.text_secondary};
 `;
 
