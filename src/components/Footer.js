@@ -1,143 +1,201 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Instagram, Facebook, Heart } from 'lucide-react';
-import { Bio } from '../data/constants';
+import { Github, Linkedin, Twitter, Mail, Heart, Terminal, Code, Zap } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Github, href: Bio.github, label: 'GitHub' },
-    { icon: Linkedin, href: Bio.linkedin, label: 'LinkedIn' },
-    { icon: Instagram, href: Bio.insta, label: 'Instagram' },
-    { icon: Facebook, href: Bio.facebook, label: 'Facebook' },
+    { icon: Github, href: 'https://github.com/yourusername', label: 'GitHub' }, // PLACEHOLDER
+    { icon: Linkedin, href: 'https://linkedin.com/in/yourusername', label: 'LinkedIn' }, // PLACEHOLDER
+    { icon: Twitter, href: 'https://twitter.com/yourusername', label: 'Twitter' }, // PLACEHOLDER
+    { icon: Mail, href: 'mailto:your.email@example.com', label: 'Email' }, // PLACEHOLDER
   ];
 
   const navLinks = [
+    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
   ];
 
+  const techStack = [
+    'React', 'Node.js', 'Python', 'TypeScript', 'Three.js', 'Tailwind CSS'
+  ];
+
   return (
-    <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-primary-500/20">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-neon-500/20 relative">
+      {/* Background effects */}
+      <div className="absolute inset-0 cyber-grid opacity-5"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center md:text-left"
+            className="md:col-span-2"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center justify-center md:justify-start space-x-2 mb-4"
+              className="flex items-center space-x-3 mb-4"
             >
-              <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-purple-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">VH</span>
+              <div className="w-10 h-10 bg-gradient-to-r from-neon-500 to-cyber-500 rounded-lg flex items-center justify-center neon-border">
+                <Terminal className="w-6 h-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-gradient">Visal Hewage</span>
+              <span className="text-2xl font-tech font-bold text-gradient-cyber">
+                DEV.PORTFOLIO
+              </span>
             </motion.div>
-            <p className="text-gray-400 max-w-md">
-              Full Stack Developer passionate about creating amazing digital experiences 
-              and solving complex problems through code.
+            
+            <p className="text-gray-400 font-mono leading-relaxed mb-6 max-w-md">
+              {/* PLACEHOLDER: Replace with your actual description */}
+              Crafting digital experiences with passion and precision. 
+              Transforming ideas into reality through code, one project at a time.
             </p>
+
+            <div className="flex items-center space-x-2 text-gray-400 font-mono text-sm">
+              <Code size={16} />
+              <span>Built with</span>
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Heart size={16} className="text-neon-500 fill-current" />
+              </motion.div>
+              <span>and cutting-edge tech</span>
+            </div>
           </motion.div>
 
-          {/* Navigation */}
+          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-center"
           >
-            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
-            <div className="grid grid-cols-2 gap-2">
+            <h3 className="text-lg font-tech font-semibold text-gradient-cyber mb-4">
+              Quick Links
+            </h3>
+            <div className="space-y-2">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
                   whileHover={{ scale: 1.05, x: 5 }}
-                  className="text-gray-400 hover:text-primary-400 transition-colors duration-200 text-sm"
+                  className="block text-gray-400 hover:text-neon-400 transition-colors duration-200 font-mono text-sm"
                 >
-                  {link.name}
+                  <span className="text-neon-500">$</span> {link.name.toLowerCase()}
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Tech Stack */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center md:text-right"
           >
-            <h3 className="text-lg font-semibold text-white mb-4">Connect With Me</h3>
-            <div className="flex justify-center md:justify-end space-x-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.2, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="p-3 bg-dark-800/50 rounded-full border border-primary-500/20 hover:border-primary-500/50 hover:bg-primary-500/10 transition-all duration-200"
+            <h3 className="text-lg font-tech font-semibold text-gradient-cyber mb-4">
+              Tech Stack
+            </h3>
+            <div className="space-y-2">
+              {techStack.map((tech, index) => (
+                <motion.div
+                  key={tech}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, x: 5 }}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-cyber-400 transition-colors duration-200 font-mono text-sm cursor-pointer"
                 >
-                  <social.icon size={20} className="text-primary-400" />
-                </motion.a>
+                  <Zap size={12} className="text-matrix-500" />
+                  <span>{tech}</span>
+                </motion.div>
               ))}
             </div>
           </motion.div>
         </div>
+
+        {/* Social Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex justify-center space-x-6 mb-8"
+        >
+          {socialLinks.map((social, index) => (
+            <motion.a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, y: -5 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-3 glass-morphism rounded-full border border-neon-500/20 hover:border-neon-500/50 hover:bg-neon-500/10 transition-all duration-200 text-gray-400 hover:text-neon-400"
+            >
+              <social.icon size={20} />
+            </motion.a>
+          ))}
+        </motion.div>
 
         {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="pt-8 border-t border-primary-500/20 text-center"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="pt-8 border-t border-neon-500/20"
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              © 2025 Visal Hewage. All rights reserved.
-            </p>
+            <div className="text-gray-400 font-mono text-sm">
+              <span className="text-neon-400">©</span> 2025 Your Name. {/* PLACEHOLDER: Replace with your actual name */}
+              <span className="text-cyber-400 ml-2">All rights reserved.</span>
+            </div>
             
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-1 text-gray-400 text-sm"
+              className="flex items-center space-x-2 text-gray-400 font-mono text-sm"
             >
-              <span>Made with</span>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
+              <Terminal size={16} className="text-matrix-500" />
+              <span>Status:</span>
+              <motion.span
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-matrix-400"
               >
-                <Heart size={16} className="text-red-500 fill-current" />
-              </motion.div>
-              <span>and React</span>
+                Available for hire
+              </motion.span>
             </motion.div>
           </div>
         </motion.div>
 
-        {/* Floating elements */}
+        {/* Floating particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            className="absolute bottom-10 left-10 w-2 h-2 bg-primary-500 rounded-full"
-            animate={{ y: [0, -20, 0], opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-20 w-1 h-1 bg-purple-500 rounded-full"
-            animate={{ y: [0, -15, 0], opacity: [0.3, 0.8, 0.3] }}
-            transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-          />
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-neon-500/30 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.3, 1, 0.3],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
         </div>
       </div>
     </footer>

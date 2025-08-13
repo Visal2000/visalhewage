@@ -1,60 +1,81 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
-import Experience from './components/Experience';
 import Projects from './components/Projects';
-import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import MatrixRain from './components/MatrixRain';
+import Scene3D from './components/3D/Scene3D';
 import './index.css';
+
+// Loading component
+const LoadingScreen = () => (
+  <div className="fixed inset-0 bg-dark-950 flex items-center justify-center z-50">
+    <div className="text-center">
+      <div className="cyber-spinner mb-4"></div>
+      <motion.div
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+        className="text-neon-400 font-mono"
+      >
+        Initializing...
+      </motion.div>
+    </div>
+  </div>
+);
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900">
-      <div className="fixed inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%229333ea%22 fill-opacity=%220.05%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
+    <div className="min-h-screen bg-matrix-bg relative overflow-x-hidden">
+      {/* Matrix rain background */}
+      <MatrixRain />
+      
+      {/* 3D Scene */}
+      <Suspense fallback={null}>
+        <Scene3D />
+      </Suspense>
 
-      <div className="relative z-10">
+      {/* Cyber grid overlay */}
+      <div className="fixed inset-0 cyber-grid opacity-10 pointer-events-none z-0"></div>
+
+      {/* Main content */}
+      <div className="relative z-10 matrix-bg">
         <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Education />
-        <Contact />
+        
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+        
         <Footer />
       </div>
 
-      {/* Floating background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-        <motion.div
-          className="absolute top-3/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 100, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
+      {/* Floating particles */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-5">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+            }}
+          />
+        ))}
       </div>
+
+      {/* Scan line effect */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon-500 to-transparent opacity-50 pointer-events-none z-20"
+        animate={{ y: ['0vh', '100vh'] }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+      />
     </div>
   );
 }
